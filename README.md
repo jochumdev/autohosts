@@ -24,6 +24,7 @@ Options:
 - `--type`: Type of instance (default: t1.micro)
 - `--ssh-key`: Path to SSH public key file (required)
 - `--ignore-existing`: Skip creation if container exists (default: False)
+- `--workers`: Number of parallel workers (default: 4)
 
 #### `remove_containers.py`
 Removes multiple Incus containers.
@@ -34,8 +35,9 @@ Removes multiple Incus containers.
 
 Options:
 - `--prefix`: Prefix for container names (default: test)
-- `--start`: First container ID number to remove (default: 1)
+- `--start`: First id of container to remove (default: 1)
 - `--count`: Number of containers to remove (required)
+- `--workers`: Number of parallel workers (default: 4)
 
 #### `ssh_container.py`
 SSH into a specific container with automatic host key handling.
@@ -104,10 +106,10 @@ ssh-keygen -t rsa -b 4096
 ./remove_containers.py --count 5
 ```
 
-## Logging
-
-All scripts use Python's logging module and will output detailed information at the DEBUG level.
-
 ## Contributing
 
 Feel free to submit issues and enhancement requests!
+
+## License
+
+MIT Licensed

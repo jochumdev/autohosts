@@ -43,9 +43,13 @@ class CheckmkAPI:
         folders = folder_path.split('~')
         current_folder = ''
         
+        changed = False
         for folder in folders[1:]:
             current_folder = f"{current_folder}~{folder}"
-            return self.create_folder(current_folder)
+            if self.create_folder(current_folder):
+                changed = True
+
+        return changed
             
     def create_folder(self, folder_path: str) -> bool:
         """Create a new folder in CheckMK."""
