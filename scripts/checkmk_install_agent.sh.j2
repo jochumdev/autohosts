@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+SERVER="{{ server }}"
+SITE="{{ site }}"
+VERSION="{{ version }}"
+
+USER="{{ user }}"
+PASSWORD="{{ password }}"
+
+dpkg --configure -a
+apt-get update
+apt-get install -qy wget
+wget "http://${SERVER}/${SITE}/check_mk/agents/check-mk-agent_${VERSION}_all.deb"
+apt-get install -y -f ./check-mk-agent_${VERSION}_all.deb
+
+cmk-agent-ctl register --server ${SERVER} --site ${SITE} --user ${USER} --hostname $(hostname -f) -P "${PASSWORD}" --trust-cert
